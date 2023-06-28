@@ -34,9 +34,11 @@ async def transfer_balance(data_transfer: Transfer):
     result_check_balance_to = await check_balance(data_transfer.account_to)
     result_check_balance_to.balance += data_transfer.account_from.balance
     result_check_balance_to.date = datetime.datetime.now()
+    result_check_balance_to.transaction_value = data_transfer.account_from.balance
 
     result_check_balance_from.balance -= data_transfer.account_from.balance
     result_check_balance_from.date = datetime.datetime.now()
+    result_check_balance_from.transaction_value = data_transfer.account_from.balance
 
     return result_check_balance_to
 
